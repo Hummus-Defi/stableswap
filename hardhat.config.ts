@@ -7,6 +7,7 @@ import '@nomiclabs/hardhat-etherscan'
 import '@typechain/hardhat'
 import '@openzeppelin/hardhat-upgrades'
 import 'solidity-coverage'
+import 'hardhat-abi-exporter'
 import 'hardhat-deploy'
 import 'hardhat-gas-reporter'
 import 'hardhat-docgen'
@@ -59,6 +60,12 @@ const config: HardhatUserConfig = {
     outDir: './build/typechain/',
     target: 'ethers-v5',
   },
+  abiExporter: {
+    flat: true,
+    clear: true,
+    runOnCompile: true,
+    path: './build/abi',
+  },
   mocha: {
     timeout: 200000,
   },
@@ -97,6 +104,16 @@ const config: HardhatUserConfig = {
       42: '0x3d7d3Bc096A8d77c87761da6A06a12c039F467B6',
       1088: '0x4651B38e7ec14BB3db731369BFE5B08F2466Bd0A',
     },
+    USDC: {
+      42: '0xE4E979C680cCCD0498fA35BC28b81cCf46a91d3e',
+      1088: '0xEA32A96608495e54156Ae48931A7c20f0dcc1a21', // m.USDC
+    },
+    USDT: {
+      42: '0x4cE4541832b31b2D6E581759D07f0838e7FEeE5b',
+      1088: '0xbB06DCA3AE6887fAbF931640f67cab3e3a16F4dC', // m.USDT
+    },
+
+    // LP assets
     HLPDAI: {
       42: '0x53211440f038dBBe9DE1B9fa58757cb430ecb752',
     },
@@ -105,15 +122,6 @@ const config: HardhatUserConfig = {
     },
     HLPUSDT: {
       42: '0x44ba84500C5CeEB235653BA4952bc61F376847Ec',
-    },
-
-    USDC: {
-      42: '0xE4E979C680cCCD0498fA35BC28b81cCf46a91d3e',
-      1088: '0xEA32A96608495e54156Ae48931A7c20f0dcc1a21', // m.USDC
-    },
-    USDT: {
-      42: '0x4cE4541832b31b2D6E581759D07f0838e7FEeE5b',
-      1088: '0xbB06DCA3AE6887fAbF931640f67cab3e3a16F4dC', // m.USDT
     },
   },
   docgen: {
