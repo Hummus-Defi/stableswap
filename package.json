@@ -1,7 +1,6 @@
 {
   "name": "@hummus/stableswap",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "engines": {
     "node": ">=14"
@@ -10,7 +9,8 @@
     "url": "https://github.com/Hummus-Defi/stableswap"
   },
   "files": [
-    "artifacts"
+    "artifacts",
+    "contracts"
   ],
   "devDependencies": {
     "@chainlink/contracts": "^0.3.0",
@@ -47,6 +47,8 @@
     "hardhat-docgen": "^1.1.2",
     "hardhat-etherscan-abi": "^0.1.1",
     "hardhat-gas-reporter": "^1.0.4",
+    "hardhat-spdx-license-identifier": "^2.0.3",
+    "metis-sourcecode-verify": "^0.0.3",
     "prettier": "^2.3.2",
     "prettier-plugin-solidity": "^1.0.0-beta.17",
     "sol2uml": "^1.1.27",

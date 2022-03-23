@@ -4,6 +4,7 @@ import '@nomiclabs/hardhat-waffle'
 import '@nomiclabs/hardhat-ethers'
 import '@nomiclabs/hardhat-solhint'
 import '@nomiclabs/hardhat-etherscan'
+// import 'metis-sourcecode-verify'
 import '@typechain/hardhat'
 import '@openzeppelin/hardhat-upgrades'
 import 'solidity-coverage'
@@ -14,6 +15,7 @@ import 'hardhat-docgen'
 import '@hardhat-docgen/core'
 import '@hardhat-docgen/markdown'
 import 'hardhat-contract-sizer'
+import 'hardhat-spdx-license-identifier'
 
 import { HardhatUserConfig } from 'hardhat/config'
 
@@ -66,6 +68,10 @@ const config: HardhatUserConfig = {
     runOnCompile: true,
     path: './build/abi',
   },
+  spdxLicenseIdentifier: {
+    overwrite: false,
+    runOnCompile: true,
+  },
   mocha: {
     timeout: 200000,
   },
@@ -102,7 +108,7 @@ const config: HardhatUserConfig = {
 
     DAI: {
       42: '0x3d7d3Bc096A8d77c87761da6A06a12c039F467B6',
-      1088: '0x4651B38e7ec14BB3db731369BFE5B08F2466Bd0A',
+      1088: '0x4651B38e7ec14BB3db731369BFE5B08F2466Bd0A', // rDAI
     },
     USDC: {
       42: '0xE4E979C680cCCD0498fA35BC28b81cCf46a91d3e',
