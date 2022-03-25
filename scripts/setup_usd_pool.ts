@@ -7,7 +7,7 @@ async function initPoolAsset(pool: string, asset: string, token: string) {
 }
 
 async function main() {
-  const { ORACLE, USD_POOL, HLPDAI, HLPUSDC, HLPUSDT, DAI, USDC, USDT } = await getNamedAccounts()
+  const { USD_POOL, HLPDAI, HLPUSDC, HLPUSDT, DAI, USDC, USDT } = await getNamedAccounts()
 
   // await setPriceOracle(USD_POOL, ORACLE)
 
