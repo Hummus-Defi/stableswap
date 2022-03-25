@@ -87,9 +87,11 @@ const config: HardhatUserConfig = {
     },
     MOCK_FEED: {
       42: '0x12Fd2C9F869Ff1ac194209daE34e0be688A58086',
+      588: '0x3d7d3Bc096A8d77c87761da6A06a12c039F467B6',
     },
     ORACLE: {
       42: '0xC711114a030337efe434FEA747B0f81bC926B640',
+      588: '0xFE0401CeCBfDA864cAE84F8e716B71e32eD405aE',
       // 1088: '0x6E6E633320Ca9f2c8a8722c5f4a993D9a093462E', // https://docs.diadata.org/documentation/oracle-documentation/deployed-contracts
     },
     ROUTER: {
@@ -97,37 +99,44 @@ const config: HardhatUserConfig = {
     },
     USD_POOL: {
       42: '0x4411744f2687a7EF3e9770bf29b7afD2834A2Ade',
+      588: '0x4114458c9b16850309143cF2688D3a6185e975C3',
+      1088: '',
     },
     USD_ACCOUNT: {
-      4: '',
       42: '0x24BBD559a81971A37E6fCaEfc02E8Ed54FDdd7A9',
-      1088: '',
+      588: '0x0B86B14E970c4462f6703Ba1DaF93Ec9EEeD92d0',
     },
 
     // tokens
 
     DAI: {
       42: '0x3d7d3Bc096A8d77c87761da6A06a12c039F467B6',
+      588: '0x4c7A71a7B2066f71db85d3Cc4eD96f55cb509F8e',
       1088: '0x4651B38e7ec14BB3db731369BFE5B08F2466Bd0A', // rDAI
     },
     USDC: {
       42: '0xE4E979C680cCCD0498fA35BC28b81cCf46a91d3e',
+      588: '0x159B73D85b93E9F108F7FCCB77Ae1271607682db',
       1088: '0xEA32A96608495e54156Ae48931A7c20f0dcc1a21', // m.USDC
     },
     USDT: {
       42: '0x4cE4541832b31b2D6E581759D07f0838e7FEeE5b',
+      588: '0x24BBD559a81971A37E6fCaEfc02E8Ed54FDdd7A9',
       1088: '0xbB06DCA3AE6887fAbF931640f67cab3e3a16F4dC', // m.USDT
     },
 
     // LP assets
     HLPDAI: {
       42: '0x53211440f038dBBe9DE1B9fa58757cb430ecb752',
+      588: '0xaFFbDb406d41b9a1AFD041FeBD412A2dd236244C',
     },
     HLPUSDC: {
       42: '0x0F6f2E19Bc2Ad2b847dd329A0D89DC0043003754',
+      588: '0xa6ae03Ff644156401205Afb6d241f245E3714F78',
     },
     HLPUSDT: {
       42: '0x44ba84500C5CeEB235653BA4952bc61F376847Ec',
+      588: '0xF8F6F0C986B2dE4ABf1E8AAE12ffad3A376438D2',
     },
   },
   docgen: {

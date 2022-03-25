@@ -2,7 +2,7 @@
 
 ## Oracle Deployment
 
-1. Deploy the Oracle, if not done previously
+1. Deploy the Oracle, if not done previously. Set the `ORACLE` variable in `hardhat.config.ts`.
 
 ```
 npx hardhat run scripts/deploy_oracle.ts --network <network-name>
@@ -16,19 +16,19 @@ TBD
 
 ## Pool Deployment
 
-1. Deploy the USD Pool
+1. Deploy the USD Pool. Set the `USD_POOL` variable in `hardhat.config.ts`.
 
 ```
-npx hardhat run scripts/deploy_pool.ts --network <network-name>
+npx hardhat run scripts/deploy_usd_pool.ts --network <network-name>
 ```
 
-2. Deploy the USD Aggregate Account
+2. Deploy the USD Aggregate Account. Set the `USD_ACCOUNT` variable in `hardhat.config.ts`.
 
 ```
 npx hardhat run scripts/deploy_usd_account.ts --network <network-name>
 ```
 
-3. Deploy the USD Pool Assets
+3. Deploy the USD Pool Assets. Set the `HLPUSDC`, `HLPUSDT`, and `HLPDAI` variables in `hardhat.config.ts`.
 
 ```
 npx hardhat run scripts/deploy_usd_assets.ts --network <network-name>
