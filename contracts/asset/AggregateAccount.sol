@@ -37,7 +37,7 @@ contract AggregateAccount is Initializable, OwnableUpgradeable {
      * @param accountName_ the new name
      */
     function setAccountName(string memory accountName_) external onlyOwner {
-        require(bytes(accountName_).length > 0, 'Platypus: Aggregate account name cannot be zero');
+        require(bytes(accountName_).length > 0, 'Hummus: Aggregate account name cannot be zero');
         accountName = accountName_;
     }
 }

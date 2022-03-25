@@ -44,9 +44,9 @@ contract IntegrationTest {
         aggregateAccount_ = new AggregateAccount();
         aggregateAccount_.initialize('USD', true);
         usdt_asset_ = new Asset();
-        usdt_asset_.initialize(address(usdt_), 'Platypus USDT Asset', 'platypus.USDT', address(aggregateAccount_));
+        usdt_asset_.initialize(address(usdt_), 'Hummus USDT Asset', 'hummus.USDT', address(aggregateAccount_));
         dai_asset_ = new Asset();
-        dai_asset_.initialize(address(dai_), 'Platypus DAI Asset', 'platypus.DAI', address(aggregateAccount_));
+        dai_asset_.initialize(address(dai_), 'Hummus DAI Asset', 'hummus.DAI', address(aggregateAccount_));
 
         mock_feed = new TestChainlinkAggregator();
         mock_feed.setLatestAnswer(1e8, block.timestamp);

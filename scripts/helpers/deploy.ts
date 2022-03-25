@@ -44,8 +44,8 @@ export const deployOracle = async () => {
 }
 
 export const deployRouter = async () => {
-  const RouterFactory = await ethers.getContractFactory('PlatypusRouter01')
-  console.log('Deploying PlatypusRouter01...')
+  const RouterFactory = await ethers.getContractFactory('HummusRouter01')
+  console.log('Deploying HummusRouter01...')
   const router = await RouterFactory.deploy()
   await router.deployed()
   console.log('Deployed to:', router.address)

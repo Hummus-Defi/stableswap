@@ -161,7 +161,7 @@ contract TestAssetV99 is Initializable, OwnableUpgradeable, ERC20Upgradeable {
 
     /**
      * @notice Transfers ERC20 underlyingToken from this contract to another account. Can only be called by Pool.
-     * @dev Not to be confused with transferring platypus Assets.
+     * @dev Not to be confused with transferring hummus Assets.
      * @param to address to transfer the token to
      * @param amount amount to transfer
      */

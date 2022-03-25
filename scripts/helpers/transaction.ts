@@ -25,7 +25,7 @@ export const addAsset = async (poolAddress: string, asset: string, token: string
 // Router
 
 export const approveSpendingByPool = async (routerAddress: string, pool: string, tokens: string[]) => {
-  const router = await ethers.getContractAt('PlatypusRouter01', routerAddress)
+  const router = await ethers.getContractAt('HummusRouter01', routerAddress)
   const tx = await router.approveSpendingByPool(tokens, pool)
   await tx.wait()
 }

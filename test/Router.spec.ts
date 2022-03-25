@@ -30,7 +30,7 @@ describe('Router01', function () {
 
     // Get contracts for Pool, Asset
     Asset = await ethers.getContractFactory('Asset')
-    Router = await ethers.getContractFactory('PlatypusRouter01')
+    Router = await ethers.getContractFactory('HummusRouter01')
   })
 
   beforeEach(async function () {

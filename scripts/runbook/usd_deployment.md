@@ -37,12 +37,12 @@ npx hardhat run scripts/deploy_usd_assets.ts --network <network-name>
 4. Setup the Pool (Set Price Oracle, Add USD Assets)
 
 ```
-npx hardhat run scripts/deploy_usd_pool.ts --network <network-name>
+npx hardhat run scripts/setup_usd_pool.ts --network <network-name>
 ```
 
 ## Router Deployment
 
-1. Deploy the Router
+1. Deploy the Router. Set the `ROUTER` variable in `hardhat.config.ts`.
 
 ```
 npx hardhat run scripts/deploy_router.ts

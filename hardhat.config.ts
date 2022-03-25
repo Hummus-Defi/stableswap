@@ -81,18 +81,14 @@ const config: HardhatUserConfig = {
     deployer: 0,
 
     // contracts
-
-    DIA: {
-      1088: '0x6E6E633320Ca9f2c8a8722c5f4a993D9a093462E',
-    },
-    MOCK_FEED: {
+    FEED: {
       42: '0x12Fd2C9F869Ff1ac194209daE34e0be688A58086',
       588: '0x3d7d3Bc096A8d77c87761da6A06a12c039F467B6',
+      1088: '0x6E6E633320Ca9f2c8a8722c5f4a993D9a093462E', // DIA, https://docs.diadata.org/documentation/oracle-documentation/deployed-contracts
     },
     ORACLE: {
       42: '0xC711114a030337efe434FEA747B0f81bC926B640',
       588: '0xFE0401CeCBfDA864cAE84F8e716B71e32eD405aE',
-      // 1088: '0x6E6E633320Ca9f2c8a8722c5f4a993D9a093462E', // https://docs.diadata.org/documentation/oracle-documentation/deployed-contracts
     },
     ROUTER: {
       42: '0xE8a371e7A4aA192c6ae06cf31d1FbA30D57F99a0',
@@ -105,6 +101,7 @@ const config: HardhatUserConfig = {
     USD_ACCOUNT: {
       42: '0x24BBD559a81971A37E6fCaEfc02E8Ed54FDdd7A9',
       588: '0x0B86B14E970c4462f6703Ba1DaF93Ec9EEeD92d0',
+      1088: '',
     },
 
     // tokens
@@ -129,14 +126,17 @@ const config: HardhatUserConfig = {
     HLPDAI: {
       42: '0x53211440f038dBBe9DE1B9fa58757cb430ecb752',
       588: '0xaFFbDb406d41b9a1AFD041FeBD412A2dd236244C',
+      1088: '',
     },
     HLPUSDC: {
       42: '0x0F6f2E19Bc2Ad2b847dd329A0D89DC0043003754',
       588: '0xa6ae03Ff644156401205Afb6d241f245E3714F78',
+      1088: '',
     },
     HLPUSDT: {
       42: '0x44ba84500C5CeEB235653BA4952bc61F376847Ec',
       588: '0xF8F6F0C986B2dE4ABf1E8AAE12ffad3A376438D2',
+      1088: '',
     },
   },
   docgen: {

@@ -6,7 +6,7 @@ import '../libraries/DSMath.sol';
 
 /**
  * @title Core
- * @notice Handles math operations of Platypus protocol.
+ * @notice Handles math operations of Hummus protocol.
  * @dev Uses DSMath to compute using WAD and RAY.
  */
 contract Core {

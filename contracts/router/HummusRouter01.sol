@@ -7,14 +7,14 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 
 import '../interfaces/IPool.sol';
-import '../interfaces/IPlatypusRouter01.sol';
+import '../interfaces/IHummusRouter01.sol';
 
 /**
- * @title PlatypusRouter01
- * @notice Allows routing on different platypus pools
+ * @title HummusRouter01
+ * @notice Allows routing on different hummus pools
  * @dev Owner is allowed and required to approve token spending by pools via approveSpendingByPool function
  */
-contract PlatypusRouter01 is Ownable, ReentrancyGuard, IPlatypusRouter01 {
+contract HummusRouter01 is Ownable, ReentrancyGuard, IHummusRouter01 {
     using SafeERC20 for IERC20;
 
     /// @dev Modifier ensuring a certain deadline for a function to complete execution

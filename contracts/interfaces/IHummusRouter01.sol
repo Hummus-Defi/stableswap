@@ -2,7 +2,7 @@
 
 pragma solidity 0.8.9;
 
-interface IPlatypusRouter01 {
+interface IHummusRouter01 {
     function swapTokensForTokens(
         address[] calldata tokenPath,
         address[] calldata poolPath,
