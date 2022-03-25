@@ -148,7 +148,9 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     // API key for snowtrace.io
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: {
+      metisAndromeda: 'apikey',
+    },
   },
 }
 
