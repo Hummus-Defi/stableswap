@@ -43,6 +43,15 @@ export const deployOracle = async () => {
   return chainlinkProxyPriceProvider
 }
 
+export const deployDiaOracle = async () => {
+  const DiaProxyPriceProvider = await ethers.getContractFactory('DiaProxyPriceProvider')
+  console.log('Deploying DiaProxyPriceProvider...')
+  const diaProxyPriceProvider = await DiaProxyPriceProvider.deploy([], [], [])
+  await diaProxyPriceProvider.deployed()
+  console.log('Deployed to:', diaProxyPriceProvider.address)
+  return diaProxyPriceProvider
+}
+
 export const deployRouter = async () => {
   const RouterFactory = await ethers.getContractFactory('HummusRouter01')
   console.log('Deploying HummusRouter01...')

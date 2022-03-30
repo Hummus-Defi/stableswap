@@ -1,7 +1,12 @@
-import { deployOracle } from './helpers/deploy'
+import { network } from 'hardhat'
+import { deployDiaOracle, deployOracle } from './helpers/deploy'
 
 async function main() {
-  await deployOracle()
+  if (network.name === 'andromeda') {
+    await deployDiaOracle()
+  } else {
+    await deployOracle()
+  }
 }
 
 main()

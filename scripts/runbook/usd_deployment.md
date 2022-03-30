@@ -11,7 +11,7 @@ npx hardhat run scripts/deploy_oracle.ts --network <network-name>
 2. Add USD Asset Price Feeds
 
 ```
-TBD
+npx hardhat run scripts/setup_usd_feed.ts --network <network-name>
 ```
 
 ## Pool Deployment

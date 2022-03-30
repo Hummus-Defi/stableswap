@@ -84,14 +84,16 @@ const config: HardhatUserConfig = {
     FEED: {
       42: '0x12Fd2C9F869Ff1ac194209daE34e0be688A58086',
       588: '0x3d7d3Bc096A8d77c87761da6A06a12c039F467B6',
-      1088: '0x6E6E633320Ca9f2c8a8722c5f4a993D9a093462E', // DIA, https://docs.diadata.org/documentation/oracle-documentation/deployed-contracts
+      1088: '0xa479FC13e40155e853e790115423704BF06a065F', // DIA, https://docs.diadata.org/documentation/oracle-documentation/deployed-contracts
     },
     ORACLE: {
       42: '0xC711114a030337efe434FEA747B0f81bC926B640',
       588: '0xFE0401CeCBfDA864cAE84F8e716B71e32eD405aE',
+      1088: '0x3f1c587090c6ED373D71f7623201f724BBB0a6bf',
     },
     ROUTER: {
       42: '0xE8a371e7A4aA192c6ae06cf31d1FbA30D57F99a0',
+      588: '0x56990c5c86fe2afFdd9c7d28b9f85ef1C7a691Fe',
       1088: '0x6B6F7437DF9cE9552ED7Fc8f529BAf48fb305534',
     },
     USD_POOL: {
