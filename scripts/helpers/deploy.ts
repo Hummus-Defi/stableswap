@@ -61,6 +61,15 @@ export const deployRouter = async () => {
   return router
 }
 
+export const deployTimelock = async (minDelay: number, proposers: string[], executors: string[]) => {
+  const TimelockFactory = await ethers.getContractFactory('Timelock')
+  console.log('Deploying Timelock...')
+  const timelock = await TimelockFactory.deploy(minDelay, proposers, executors)
+  await timelock.deployed()
+  console.log('Deployed to:', timelock.address)
+  return timelock
+}
+
 // Testnet
 
 export const deployMockERC20 = async (name: string, symbol: string, decimals: number, supply: BigNumberish) => {

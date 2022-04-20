@@ -79,6 +79,9 @@ const config: HardhatUserConfig = {
     // accounts
 
     deployer: 0,
+    multisig: {
+      1088: '0x08961b470a39bEE12435f3742aFaA70B64DCa893',
+    },
 
     // contracts
     FEED: {
