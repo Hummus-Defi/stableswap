@@ -127,6 +127,12 @@ const config: HardhatUserConfig = {
       588: '0x24BBD559a81971A37E6fCaEfc02E8Ed54FDdd7A9',
       1088: '0xbB06DCA3AE6887fAbF931640f67cab3e3a16F4dC', // m.USDT
     },
+    METIS: {
+      1088: '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000',
+    },
+    WETH: {
+      1088: '0x420000000000000000000000000000000000000A',
+    },
 
     // LP assets
     HLPDAI: {

@@ -32,6 +32,15 @@ export const deployPool = async () => {
   return pool
 }
 
+export const deployPoolVariable = async () => {
+  const Pool = await ethers.getContractFactory('PoolVariable')
+  console.log('Deploying Pool...')
+  const pool = await upgrades.deployProxy(Pool, [], { unsafeAllow: ['delegatecall'] })
+  await pool.deployTransaction.wait()
+  console.log('Deployed to:', pool.address)
+  return pool
+}
+
 // Immutable
 
 export const deployOracle = async () => {
