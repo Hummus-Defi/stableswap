@@ -736,8 +736,8 @@ contract PoolVariable is
         Asset toAsset,
         uint256 fromAmount
     ) private view returns (uint256 idealToAmount) {
-        uint256 fromPrice = _priceOracle.getAssetPrice(address(fromAsset.underlyingToken()));
-        uint256 toPrice = _priceOracle.getAssetPrice(address(toAsset.underlyingToken()));
+        uint256 fromPrice = _priceOracle.getAssetPrice(address(fromAsset));
+        uint256 toPrice = _priceOracle.getAssetPrice(address(toAsset));
 
         // assume perfect price relationship between assets
         idealToAmount = ((fromAmount * fromPrice * 10**toAsset.decimals()) / (toPrice * 10**fromAsset.decimals()));

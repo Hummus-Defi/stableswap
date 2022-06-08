@@ -65,9 +65,9 @@ describe('PoolVariable', function () {
 
       // Set price oracle
       await setPriceOracle(this.pool, owner, this.lastBlockTime, [
-        { address: this.METIS.address, initialRate: parseUnits('20', 8).toString() },
-        { address: this.USDC.address, initialRate: parseUnits('1', 8).toString() },
-        { address: this.ETH.address, initialRate: parseUnits('2000', 8).toString() },
+        { address: this.assetMETIS.address, initialRate: parseUnits('20', 8).toString() },
+        { address: this.assetUSDC.address, initialRate: parseUnits('1', 8).toString() },
+        { address: this.assetETH.address, initialRate: parseUnits('2000', 8).toString() },
       ])
 
       // fund user with 100 k
