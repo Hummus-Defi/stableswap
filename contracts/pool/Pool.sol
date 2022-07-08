@@ -61,6 +61,9 @@ contract Pool is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable, 
     /// @notice Dev address
     address private _dev;
 
+    /// @notice Fee Distributor address
+    address private _feeDistributor;
+
     /// @notice The price oracle interface used in swaps
     IPriceOracleGetter private _priceOracle;
 
@@ -78,6 +81,9 @@ contract Pool is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable, 
 
     /// @notice An event emitted when dev is updated
     event DevUpdated(address indexed previousDev, address indexed newDev);
+
+    /// @notice An event emitted when fee distributor is updated
+    event FeeDistributorUpdated(address indexed previousFeeDistributor, address indexed newFeeDistributor);
 
     /// @notice An event emitted when oracle is updated
     event OracleUpdated(address indexed previousOracle, address indexed newOracle);
@@ -142,8 +148,9 @@ contract Pool is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable, 
         _retentionRatio = ETH_UNIT; // 1
         _maxPriceDeviation = 0.02e18; // 2 * 10**16 == 2% = 0.02 in ETH_UNIT.
 
-        // set dev
+        // set dev & fee distributor
         _dev = msg.sender;
+        _feeDistributor = msg.sender;
     }
 
     // Getters //
@@ -154,6 +161,14 @@ contract Pool is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable, 
      */
     function getDev() external view returns (address) {
         return _dev;
+    }
+
+    /**
+     * @notice Gets current Fee Distributor address
+     * @return The current Fee Distributor address for Pool
+     */
+    function getFeeDistributor() external view returns (address) {
+        return _feeDistributor;
     }
 
     /**
@@ -243,6 +258,16 @@ contract Pool is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable, 
         require(dev != address(0), 'ZERO');
         emit DevUpdated(_dev, dev);
         _dev = dev;
+    }
+
+    /**
+     * @notice Changes the fee distributor. Can only be set by the contract owner.
+     * @param feeDistributor new contract fee distributor address
+     */
+    function setFeeDistributor(address feeDistributor) external onlyOwner {
+        require(feeDistributor != address(0), 'ZERO');
+        emit FeeDistributorUpdated(_feeDistributor, feeDistributor);
+        _feeDistributor = feeDistributor;
     }
 
     /**
@@ -764,6 +789,7 @@ contract Pool is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable, 
         fromAsset.addCash(fromAmount);
         toAsset.removeCash(actualToAmount);
         toAsset.addLiability(_dividend(haircut, _retentionRatio));
+        toAsset.transferUnderlyingToken(_feeDistributor, _dividend(haircut, ETH_UNIT - _retentionRatio));
         toAsset.transferUnderlyingToken(to, actualToAmount);
 
         emit Swap(msg.sender, fromToken, toToken, fromAmount, actualToAmount, to);
