@@ -61,14 +61,14 @@ contract Pool is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable, 
     /// @notice Dev address
     address private _dev;
 
-    /// @notice Fee Distributor address
-    address private _feeDistributor;
-
     /// @notice The price oracle interface used in swaps
     IPriceOracleGetter private _priceOracle;
 
     /// @notice A record of assets inside Pool
     AssetMap private _assets;
+
+    /// @notice Fee Distributor address
+    address private _feeDistributor;
 
     /// @notice An event emitted when an asset is added to Pool
     event AssetAdded(address indexed token, address indexed asset);
