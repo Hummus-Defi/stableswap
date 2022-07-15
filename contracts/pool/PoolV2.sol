@@ -785,12 +785,10 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
         (actualToAmount, haircut) = _quoteFrom(fromAsset, toAsset, fromAmount);
         require(minimumToAmount <= actualToAmount, 'AMOUNT_TOO_LOW');
 
-        uint256 dividendAmount = _dividend(haircut, _retentionRatio);
-
         fromERC20.safeTransferFrom(address(msg.sender), address(fromAsset), fromAmount);
         fromAsset.addCash(fromAmount);
-        toAsset.removeCash(actualToAmount + dividendAmount);
-        toAsset.transferUnderlyingToken(_feeDistributor, dividendAmount);
+        toAsset.removeCash(actualToAmount + _dividend(haircut, _retentionRatio));
+        toAsset.transferUnderlyingToken(_feeDistributor, _dividend(haircut, _retentionRatio));
         toAsset.transferUnderlyingToken(to, actualToAmount);
 
         emit Swap(msg.sender, fromToken, toToken, fromAmount, actualToAmount, to);
