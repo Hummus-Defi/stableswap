@@ -110,11 +110,20 @@ const config: HardhatUserConfig = {
       1088: '0x866F899a6562cD7a3d220249da374AB4F972D3C5',
     },
 
+    // chainlink feeds, https://docs.chain.link/docs/data-feeds-metis/
+    USDC_FEED: {
+      1088: '0x663855969c85F3BE415807250414Ca9129533a5f'
+    },
+    USDT_FEED: {
+      1088: '0x51864b8948Aa5e35aace2BaDaF901D63418A3b9D'
+    },
+
     // tokens
 
     DAI: {
       42: '0x3d7d3Bc096A8d77c87761da6A06a12c039F467B6',
-      588: '0x4c7A71a7B2066f71db85d3Cc4eD96f55cb509F8e',
+      // 588: '0x4c7A71a7B2066f71db85d3Cc4eD96f55cb509F8e', // OLD MockERC20 DAI
+      588: '0x44ba84500C5CeEB235653BA4952bc61F376847Ec',
       // 1088: '0x4651B38e7ec14BB3db731369BFE5B08F2466Bd0A', // OLD rDAI
       1088: '0x4c078361FC9BbB78DF910800A991C7c3DD2F6ce0', // m.DAI
     },
@@ -138,7 +147,8 @@ const config: HardhatUserConfig = {
     // LP assets
     HLPDAI: {
       42: '0x53211440f038dBBe9DE1B9fa58757cb430ecb752',
-      588: '0xaFFbDb406d41b9a1AFD041FeBD412A2dd236244C',
+      // 588: '0xaFFbDb406d41b9a1AFD041FeBD412A2dd236244C', // OLD
+      588: '0x12EDd8761bc46093f94B35BA60f4d123Eb592355',
       // 1088: '0xd5A0760D55ad46B6A1C46D28725e4C117312a7aD', OLD
       1088: '0x0CAd02c4c6fB7c0d403aF74Ba9adA3bf40df6478',
     },
