@@ -54,6 +54,9 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
     /// @notice Retention ratio
     uint256 private _retentionRatio;
 
+    /// @notice Distribution ratio
+    uint256 private _distributionRatio;
+
     /// @notice Maximum price deviation
     /// @dev states the maximum price deviation allowed between assets
     uint256 private _maxPriceDeviation;
@@ -109,6 +112,9 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
     /// @notice An event emitted when retention ratio is updated
     event RetentionRatioUpdated(uint256 previousRetentionRatio, uint256 newRetentionRatio);
 
+    /// @notice An event emitted when distribution ratio is updated
+    event DistributionRatioUpdated(uint256 previousDistributionRatio, uint256 newDistributionRatio);
+
     /// @notice An event emitted when a swap is made in Pool
     event Swap(
         address indexed sender,
@@ -146,6 +152,7 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
         _xThreshold = 329811659274998519; // (k*n)**(1/(n+1))
         _haircutRate = 0.0004e18; // 4 * 10**14 == 0.0004 == 0.04% for intra-aggregate account swap
         _retentionRatio = ETH_UNIT; // 1
+        _distributionRatio = 0;
         _maxPriceDeviation = 0.02e18; // 2 * 10**16 == 2% = 0.02 in ETH_UNIT.
 
         // set dev & fee distributor
@@ -312,6 +319,16 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
         require(retentionRatio_ <= ETH_UNIT); // retentionRatio_ should not be set bigger than 1
         emit RetentionRatioUpdated(_retentionRatio, retentionRatio_);
         _retentionRatio = retentionRatio_;
+    }
+
+    /**
+     * @notice Changes the pools distributionRatio. Can only be set by the contract owner.
+     * @param distributionRatio_ new pool's distributionRatio
+     */
+    function setDistributionRatio(uint256 distributionRatio_) external onlyOwner {
+        require(distributionRatio_ <= ETH_UNIT); // distributionRatio_ should not be set bigger than 1
+        emit DistributionRatioUpdated(_distributionRatio, distributionRatio_);
+        _distributionRatio = distributionRatio_;
     }
 
     /**
@@ -794,10 +811,14 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
         (actualToAmount, haircut) = _quoteFrom(fromAsset, toAsset, fromAmount);
         require(minimumToAmount <= actualToAmount, 'AMOUNT_TOO_LOW');
 
+        uint256 dividend = _dividend(haircut, _retentionRatio);
+        uint256 distribution = dividend.wmul(_distributionRatio);
+
         fromERC20.safeTransferFrom(address(msg.sender), address(fromAsset), fromAmount);
         fromAsset.addCash(fromAmount);
-        toAsset.removeCash(actualToAmount + _dividend(haircut, _retentionRatio));
-        toAsset.transferUnderlyingToken(_feeDistributor, _dividend(haircut, _retentionRatio));
+        toAsset.removeCash(actualToAmount + distribution);
+        toAsset.addLiability(dividend - distribution);
+        toAsset.transferUnderlyingToken(_feeDistributor, distribution);
         toAsset.transferUnderlyingToken(to, actualToAmount);
 
         emit Swap(msg.sender, fromToken, toToken, fromAmount, actualToAmount, to);
