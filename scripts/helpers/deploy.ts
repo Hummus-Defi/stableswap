@@ -32,9 +32,18 @@ export const deployPool = async () => {
   return pool
 }
 
+export const deployPoolSecondary = async () => {
+  const Pool = await ethers.getContractFactory('PoolSecondary')
+  console.log('Deploying PoolSecondary...')
+  const pool = await upgrades.deployProxy(Pool, [], { unsafeAllow: ['delegatecall'] })
+  await pool.deployTransaction.wait()
+  console.log('Deployed to:', pool.address)
+  return pool
+}
+
 export const deployPoolVariable = async () => {
   const Pool = await ethers.getContractFactory('PoolVariable')
-  console.log('Deploying Pool...')
+  console.log('Deploying PoolVariable...')
   const pool = await upgrades.deployProxy(Pool, [], { unsafeAllow: ['delegatecall'] })
   await pool.deployTransaction.wait()
   console.log('Deployed to:', pool.address)

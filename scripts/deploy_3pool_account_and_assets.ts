@@ -1,3 +1,4 @@
+import { getNamedAccounts } from 'hardhat'
 import { deployAggregateAccount, deployAsset } from './helpers/deploy'
 
 async function main() {
