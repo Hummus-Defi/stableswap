@@ -4,7 +4,7 @@ import { addAsset, setPool } from '../helpers/transaction'
 
 async function main() {
   const { USDC, MAI } = await getNamedAccounts()
-  const account = await deployAggregateAccount('USD_MAI', true)
+  const account = await deployAggregateAccount('USD-MAI', true)
 
   const usdc = await deployAsset(USDC, 'Hummus USDC Token (MAI)', 'HLP-m.USDC-MAI', account.address)
   const mai = await deployAsset(MAI, 'Hummus Mai Stablecoin', 'HLP-MAI', account.address)

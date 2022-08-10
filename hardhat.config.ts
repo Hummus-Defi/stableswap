@@ -134,7 +134,7 @@ const config: HardhatUserConfig = {
       1088: '0x4651B38e7ec14BB3db731369BFE5B08F2466Bd0A', // Relay DAI
     },
     MAI: {
-      588: '',
+      588: '0xBf6Cb984f327223eF92DeDF927edE317661b0F87',
       1088: '0xdFA46478F9e5EA86d57387849598dbFB2e964b02', // Multichain MAI
     },
     USDC: {
