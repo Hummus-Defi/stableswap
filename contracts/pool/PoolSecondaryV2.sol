@@ -17,7 +17,7 @@ import './Core.sol';
 import '../interfaces/IPool.sol';
 
 /**
- * @title PoolV2
+ * @title PoolSecondaryV2
  * @notice Manages deposits, withdrawals and swaps. Holds a mapping of assets and parameters.
  * @dev The main entry-point of Hummus protocol
  *
@@ -25,8 +25,17 @@ import '../interfaces/IPool.sol';
  * Note The ownership will be transferred to a governance contract once Hummus community can show to govern itself.
  *
  * The unique features of the Hummus make it an important subject in the study of evolutionary biology.
+ * Changes:
+ * removed impairment loss/gain on withdrawals/deposits
  */
-contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable, PausableUpgradeable, Core, IPool {
+contract PoolSecondaryV2 is
+    Initializable,
+    OwnableUpgradeable,
+    ReentrancyGuardUpgradeable,
+    PausableUpgradeable,
+    Core,
+    IPool
+{
     using DSMath for uint256;
     using SafeERC20 for IERC20;
     using SafeERC20Upgradeable for IERC20Upgradeable;
@@ -448,47 +457,6 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
     }
 
     /**
-     * @notice gets system equilibrium coverage ratio
-     * @dev [ sum of Ai * fi / sum Li * fi ]
-     * @return equilibriumCoverageRatio system equilibrium coverage ratio
-     */
-    function getEquilibriumCoverageRatio() external view returns (uint256) {
-        return _getEquilibriumCoverageRatio();
-    }
-
-    /**
-     * @notice gets system equilibrium coverage ratio
-     * @dev [ sum of Ai * fi / sum Li * fi ]
-     * @return equilibriumCoverageRatio system equilibrium coverage ratio
-     */
-    function _getEquilibriumCoverageRatio() private view returns (uint256) {
-        uint256 totalCash = 0;
-        uint256 totalLiability = 0;
-
-        // loop on assets
-        for (uint256 i; i < _sizeOfAssetList(); ++i) {
-            // get token address
-            address assetAddress = _getKeyAtIndex(i);
-
-            // get token oracle price
-            uint256 tokenPrice = _priceOracle.getAssetPrice(assetAddress);
-
-            // used to convert cash and liabilities into ETH_UNIT to have equal decimals accross all assets
-            uint256 offset = 10**(18 - _getAsset(assetAddress).decimals());
-
-            totalCash += (_getAsset(assetAddress).cash() * offset * tokenPrice);
-            totalLiability += (_getAsset(assetAddress).liability() * offset * tokenPrice);
-        }
-
-        // if there are no liabilities or no assets in the pool, return equilibrium state = 1
-        if (totalLiability == 0 || totalCash == 0) {
-            return ETH_UNIT;
-        }
-
-        return totalCash.wdiv(totalLiability);
-    }
-
-    /**
      * @notice Adds asset to pool, reverts if asset already exists in pool
      * @param token The address of token
      * @param asset The address of the hummus Asset contract
@@ -543,14 +511,6 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
             liquidity = amount - fee;
         } else {
             liquidity = ((amount - fee) * totalSupply) / liability;
-        }
-
-        // get equilibrium coverage ratio
-        uint256 eqCov = _getEquilibriumCoverageRatio();
-
-        // apply impairment gain if eqCov < 1
-        if (eqCov < ETH_UNIT) {
-            liquidity = liquidity.wdiv(eqCov);
         }
 
         require(liquidity > 0, 'INSUFFICIENT_LIQ_MINT');
@@ -619,23 +579,12 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
             liabilityToBurn
         );
 
-        // Get equilibrium coverage ratio before withdraw
-        uint256 eqCov = _getEquilibriumCoverageRatio();
-
         // Init enoughCash to true
         enoughCash = true;
 
-        // Apply impairment in the case eqCov < 1
-        uint256 amountAfterImpairment;
-        if (eqCov < ETH_UNIT) {
-            amountAfterImpairment = (liabilityToBurn).wmul(eqCov);
-        } else {
-            amountAfterImpairment = liabilityToBurn;
-        }
-
         // Prevent underflow in case withdrawal fees >= liabilityToBurn, user would only burn his underlying liability
-        if (amountAfterImpairment > fee) {
-            amount = amountAfterImpairment - fee;
+        if (liabilityToBurn > fee) {
+            amount = liabilityToBurn - fee;
 
             // If not enough cash
             if (asset.cash() < amount) {
@@ -644,7 +593,7 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
                 enoughCash = false;
             }
         } else {
-            fee = amountAfterImpairment; // fee overcomes the amount to withdraw. User would be just burning liability
+            fee = liabilityToBurn; // fee overcomes the amount to withdraw. User would be just burning liability
             amount = 0;
             enoughCash = false;
         }

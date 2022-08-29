@@ -19,12 +19,12 @@ import '../interfaces/IPool.sol';
 /**
  * @title PoolSecondary
  * @notice Manages deposits, withdrawals and swaps. Holds a mapping of assets and parameters.
- * @dev The main entry-point of Platypus protocol
+ * @dev The main entry-point of Hummus protocol
  *
  * Note The Pool is ownable and the owner wields power.
- * Note The ownership will be transferred to a governance contract once Platypus community can show to govern itself.
+ * Note The ownership will be transferred to a governance contract once Hummus community can show to govern itself.
  *
- * The unique features of the Platypus make it an important subject in the study of evolutionary biology.
+ * The unique features of the Hummus make it an important subject in the study of evolutionary biology.
  * Changes:
  * removed impairment loss/gain on withdrawals/deposits
  */
@@ -417,7 +417,7 @@ contract PoolSecondary is
     /**
      * @notice Adds asset to pool, reverts if asset already exists in pool
      * @param token The address of token
-     * @param asset The address of the platypus Asset contract
+     * @param asset The address of the hummus Asset contract
      */
     function addAsset(address token, address asset) external onlyOwner {
         require(token != address(0), 'ZERO');
@@ -451,7 +451,7 @@ contract PoolSecondary is
      * @notice Deposits asset in Pool
      * @param asset The asset to be deposited
      * @param amount The amount to be deposited
-     * @param to The user accountable for deposit, receiving the platypus assets (lp)
+     * @param to The user accountable for deposit, receiving the hummus assets (lp)
      * @return liquidity Total asset liquidity minted
      */
     function _deposit(
@@ -483,7 +483,7 @@ contract PoolSecondary is
      * @dev Asset needs to be created and added to pool before any operation
      * @param token The token address to be deposited
      * @param amount The amount to be deposited
-     * @param to The user accountable for deposit, receiving the platypus assets (lp)
+     * @param to The user accountable for deposit, receiving the hummus assets (lp)
      * @param deadline The deadline to be respected
      * @return liquidity Total asset liquidity minted
      */
