@@ -160,7 +160,7 @@ contract PoolSecondaryV2 is
         _c1 = 376927610599998308; // ((k**(1/(n+1))) / (n**((n)/(n+1)))) + (k*n)**(1/(n+1))
         _xThreshold = 329811659274998519; // (k*n)**(1/(n+1))
         _haircutRate = 0.001e18; // 1 * 10**15 == 0.001 == 0.1% for intra-aggregate account swap
-        _retentionRatio = 0.5e18; // 50%
+        _retentionRatio = 0.4e18; // 40%
         _distributionRatio = 1e18; // 100%
         _maxPriceDeviation = 0.02e18; // 2 * 10**16 == 2% = 0.02 in ETH_UNIT.
 
