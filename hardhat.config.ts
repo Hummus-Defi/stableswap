@@ -104,8 +104,10 @@ const config: HardhatUserConfig = {
     // Main Pool
     USD_POOL: {
       42: '0x4411744f2687a7EF3e9770bf29b7afD2834A2Ade',
-      588: '0xBaF3C61797843F7e34341D5e74Aa320550db02d2',
-      1088: '0x7AA7E41871B06f15Bccd212098DeE98d944786ab',
+      // 588: '0xBaF3C61797843F7e34341D5e74Aa320550db02d2', // V1
+      // 1088: '0x7AA7E41871B06f15Bccd212098DeE98d944786ab', // V1
+      588: '0x9377f666dd67d01249ff0bf908fd9d660bc34e91',
+      1088: '0x248fD66e6ED1E0B325d7b80F5A7e7d8AA2b2528b',
     },
     USD_ACCOUNT: {
       42: '0x24BBD559a81971A37E6fCaEfc02E8Ed54FDdd7A9',
@@ -119,8 +121,10 @@ const config: HardhatUserConfig = {
       1088: '0x92C8c8F488D4797B81921451c82e9345D1196eC6',
     },
     MAI_POOL: {
-      588: '0x6B839448a0f90CBC10B86087aEbBe28ce4C08CcB',
-      1088: '0xeBe9BC8a373a3e8eCE71FAC4d9733DC9F6701869',
+      // 588: '0x6B839448a0f90CBC10B86087aEbBe28ce4C08CcB', // V1
+      // 1088: '0xeBe9BC8a373a3e8eCE71FAC4d9733DC9F6701869', // V1
+      588: '0xb5FF0063A810F500A717c434F0C852C5eE7cBe22',
+      1088: '0x23f0b6274e3126f6b5c70faabbc59b04108b58ba',
     },
 
     // chainlink feeds, https://docs.chain.link/docs/data-feeds-metis/
@@ -134,8 +138,8 @@ const config: HardhatUserConfig = {
     // tokens
 
     BUSD: {
-      588: '',
-      1088: '',
+      588: '0x9e0D716C77599f662c13B45fdBa27685F72E4E2D',
+      1088: '0xb809cda0c2f79f43248C32b5DcB09d5cD26BbF10',
     },
     DAI: {
       42: '0x3d7d3Bc096A8d77c87761da6A06a12c039F467B6',
@@ -176,6 +180,10 @@ const config: HardhatUserConfig = {
     },
 
     // Main Pool LP Assets
+    HLPBUSD: {
+      588: '0xEDC1d5b4835844C0234ef2297338417dE0F1A3d9',
+      1088: '0x919395161Dd538aa0fB065A8EaC878B18D07FbCd',
+    },
     HLPDAI: {
       42: '0x53211440f038dBBe9DE1B9fa58757cb430ecb752',
       588: '0xaD78Bb846eaf59f3faB8088E905c9d525DD7B2F1',
