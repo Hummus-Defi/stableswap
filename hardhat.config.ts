@@ -94,9 +94,10 @@ const config: HardhatUserConfig = {
 
     // Main Pool
     USD_POOL: {
-      599: '0xaFFbDb406d41b9a1AFD041FeBD412A2dd236244C', // V1
-      1088: '0x248fD66e6ED1E0B325d7b80F5A7e7d8AA2b2528b',
+      // 599: '0xaFFbDb406d41b9a1AFD041FeBD412A2dd236244C', // V1
       // 1088: '0x7AA7E41871B06f15Bccd212098DeE98d944786ab', // V1
+      599: '0x9F51f0D7F500343E969D28010C7Eb0Db1bCaAEf9',
+      1088: '0x248fD66e6ED1E0B325d7b80F5A7e7d8AA2b2528b',
     },
     USD_ACCOUNT: {
       599: '0xF8F6F0C986B2dE4ABf1E8AAE12ffad3A376438D2',
@@ -105,12 +106,13 @@ const config: HardhatUserConfig = {
 
     // Alt Pools
     MAI_ACCOUNT: {
-      599: '',
+      599: '0x6FFc3168E5Ba2Cf43C3e87a463c2CcDa7047B8Da',
       1088: '0x92C8c8F488D4797B81921451c82e9345D1196eC6',
     },
     MAI_POOL: {
+      // 599: '0xeedd391103DEaa5370A4995800195f124B4fB49D', // V1
       // 1088: '0xeBe9BC8a373a3e8eCE71FAC4d9733DC9F6701869', // V1
-      599: '',
+      599: '0x5B70D206bF9d4c1c482179552815345Ea172dA7f',
       1088: '0x23f0b6274e3126f6b5c70faabbc59b04108b58ba',
     },
 
@@ -168,7 +170,7 @@ const config: HardhatUserConfig = {
 
     // Main Pool LP Assets
     HLPBUSD: {
-      599: '',
+      599: '0x3bfAAD9C299Af01AF1eB1c51cd934753dA000531',
       1088: '0x919395161Dd538aa0fB065A8EaC878B18D07FbCd',
     },
     HLPDAI: {
@@ -176,7 +178,7 @@ const config: HardhatUserConfig = {
       1088: '0xd5A0760D55ad46B6A1C46D28725e4C117312a7aD',
     },
     HLPDAI_V2: {
-      599: '',
+      599: '0x1BF3c7B140867293F131548222DC1B5dD0baEd2B',
       1088: '0x0CAd02c4c6fB7c0d403aF74Ba9adA3bf40df6478',
     },
     HLPUSDC: {
@@ -190,11 +192,11 @@ const config: HardhatUserConfig = {
 
     // Alt Pool LP Assets
     HLPUSDC_MAI: {
-      599: '',
+      599: '0x56990c5c86fe2afFdd9c7d28b9f85ef1C7a691Fe',
       1088: '0x8a19e755610aECB3c55BdE4eCfb9185ef0267400',
     },
     HLPMAI: {
-      599: '',
+      599: '0x2545b20912DeECa12a29BE7F6DCD9A5a56630eBf',
       1088: '0x3Eaa426861a283F0E46b6411aeB3C3608B090E0e',
     },
   },
