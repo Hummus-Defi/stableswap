@@ -159,6 +159,10 @@ const config: HardhatUserConfig = {
       599: '0x24BBD559a81971A37E6fCaEfc02E8Ed54FDdd7A9',
       1088: '0xbB06DCA3AE6887fAbF931640f67cab3e3a16F4dC',
     },
+    QI: {
+      599: '0x5d7FB1329d87467752a6Eb82Bca2530152992020',
+      1088: '0x3F56e0c36d275367b8C502090EDF38289b3dEa0d',
+    },
     METIS: {
       599: '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000',
       1088: '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000',
