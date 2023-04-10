@@ -3,8 +3,8 @@ import 'dotenv/config'
 import '@nomiclabs/hardhat-waffle'
 import '@nomiclabs/hardhat-ethers'
 import '@nomiclabs/hardhat-solhint'
-// import '@nomiclabs/hardhat-etherscan'
-import 'metis-sourcecode-verify'
+import '@nomiclabs/hardhat-etherscan'
+// import 'metis-sourcecode-verify'
 import '@typechain/hardhat'
 import '@openzeppelin/hardhat-upgrades'
 import 'solidity-coverage'
@@ -109,13 +109,21 @@ const config: HardhatUserConfig = {
     // Alt Pools
     MAI_ACCOUNT: {
       588: '0xBf7d1003fC3B9CD0aD9Ff49933EA26A164444f8A',
+      599: '0xd578467A909f1CE382ebe854CC905771A3767ecE',
       1088: '0x92C8c8F488D4797B81921451c82e9345D1196eC6',
     },
     MAI_POOL: {
       // 588: '0x6B839448a0f90CBC10B86087aEbBe28ce4C08CcB', // V1
       // 1088: '0xeBe9BC8a373a3e8eCE71FAC4d9733DC9F6701869', // V1
       588: '0xb5FF0063A810F500A717c434F0C852C5eE7cBe22',
+      599: '0x3552Fe670260343979ADaC4FA35DD123f5625Bf7',
       1088: '0x23f0b6274e3126f6b5c70faabbc59b04108b58ba',
+    },
+
+    // Deprecated Pools
+    BUSD_POOL: {
+      599: '0x92C8c8F488D4797B81921451c82e9345D1196eC6',
+      1088: '0x9D73ae2Cc55EC84e0005Bd35Fd5ff68ef4fB8aC5'
     },
 
     // chainlink feeds, https://docs.chain.link/docs/data-feeds-metis/
@@ -130,12 +138,12 @@ const config: HardhatUserConfig = {
 
     BUSD: {
       588: '0x9e0D716C77599f662c13B45fdBa27685F72E4E2D',
-      599: '',
+      599: '0xB6932F9CCd572bE8Bc3174fbf10CF951e87505Fc',
       1088: '0xb809cda0c2f79f43248C32b5DcB09d5cD26BbF10',
     },
     DAI: {
       588: '0x44ba84500C5CeEB235653BA4952bc61F376847Ec',
-      599: '0x4c7A71a7B2066f71db85d3Cc4eD96f55cb509F8e',
+      599: '0x213d869824A1f24ba6E02B27e9B3063b85b6DED6',
       1088: '0x4c078361FC9BbB78DF910800A991C7c3DD2F6ce0', // m.DAI
     },
     DAI_OLD: {
@@ -143,18 +151,10 @@ const config: HardhatUserConfig = {
       599: '0x4c7A71a7B2066f71db85d3Cc4eD96f55cb509F8e',
       1088: '0x4651B38e7ec14BB3db731369BFE5B08F2466Bd0A', // Relay DAI
     },
-    FRAX: {
-      588: '',
-      1088: '',
-    },
     MAI: {
       588: '0xBf6Cb984f327223eF92DeDF927edE317661b0F87',
-      599: '',
+      599: '0x4C9030F25F0E0e25E9bBA9734D350afCf4e574AA',
       1088: '0xdFA46478F9e5EA86d57387849598dbFB2e964b02', // Multichain MAI
-    },
-    MIM: {
-      588: '',
-      1088: '0x44Dd7C98885cD3086E723B8554a90c9cC4089C4C', // Multichain MIM
     },
     USDC: {
       588: '0x159B73D85b93E9F108F7FCCB77Ae1271607682db',
@@ -166,28 +166,19 @@ const config: HardhatUserConfig = {
       599: '0x24BBD559a81971A37E6fCaEfc02E8Ed54FDdd7A9',
       1088: '0xbB06DCA3AE6887fAbF931640f67cab3e3a16F4dC', // m.USDT
     },
+    QI: {
+      599: '0x5d7FB1329d87467752a6Eb82Bca2530152992020',
+      1088: '0x3F56e0c36d275367b8C502090EDF38289b3dEa0d',
+    },
     METIS: {
+      599: '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000',
       1088: '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000',
     },
     WETH: {
       1088: '0x420000000000000000000000000000000000000A',
     },
 
-    // Main Pool LP Assets
-    HLPBUSD: {
-      588: '0xEDC1d5b4835844C0234ef2297338417dE0F1A3d9',
-      1088: '0x919395161Dd538aa0fB065A8EaC878B18D07FbCd',
-    },
-    HLPDAI: {
-      588: '0xaD78Bb846eaf59f3faB8088E905c9d525DD7B2F1',
-      599: '0x0bE3863c47E6EaB8d2DD4C663FdDDd19E7430885',
-      1088: '0x0CAd02c4c6fB7c0d403aF74Ba9adA3bf40df6478',
-    },
-    HLPDAI_OLD: {
-      588: '0x1C03ec1cC105fb925fCE78155Dd81dEf896237f7',
-      599: '0x0bE3863c47E6EaB8d2DD4C663FdDDd19E7430885',
-      1088: '0xd5A0760D55ad46B6A1C46D28725e4C117312a7aD',
-    },
+    // LP Assets - ordered by deployment
     HLPUSDC: {
       588: '0x8531939828265A346B4554B8e6478E6c12383952',
       599: '0x9196df3c5a8919a46249c35e6c7F35E42CA4F618',
@@ -198,15 +189,30 @@ const config: HardhatUserConfig = {
       599: '0x4411744f2687a7EF3e9770bf29b7afD2834A2Ade',
       1088: '0x9F51f0D7F500343E969D28010C7Eb0Db1bCaAEf9',
     },
-
-    // Alt Pool LP Assets
+    HLPDAI_OLD: {
+      588: '0x1C03ec1cC105fb925fCE78155Dd81dEf896237f7',
+      599: '0x0bE3863c47E6EaB8d2DD4C663FdDDd19E7430885',
+      1088: '0xd5A0760D55ad46B6A1C46D28725e4C117312a7aD',
+    },
+    HLPDAI: {
+      588: '0xaD78Bb846eaf59f3faB8088E905c9d525DD7B2F1',
+      599: '0xD63B25e7Eb27b14B56A7b74E672c0acf984e5ecb',
+      1088: '0x0CAd02c4c6fB7c0d403aF74Ba9adA3bf40df6478',
+    },
     HLPUSDC_MAI: {
       588: '0xA179C9Df25c4a80Ecfa8ec3788D3C055b1B2bAB2',
+      599: '0xD2331f707C1fd662b31392Aebb5b80647F198FD4',
       1088: '0x8a19e755610aECB3c55BdE4eCfb9185ef0267400',
     },
     HLPMAI: {
       588: '0x409862B7758577952971a0350935bCA4a54C63C0',
+      599: '0x523968911c8F9f466a6f34aB969E17FCA67175F9',
       1088: '0x3Eaa426861a283F0E46b6411aeB3C3608B090E0e',
+    },
+    HLPBUSD: {
+      588: '0xEDC1d5b4835844C0234ef2297338417dE0F1A3d9',
+      599: '0x5788C334fBC63ee1B6eb4Dac4e84e1ee5bC1e6c1',
+      1088: '0x919395161Dd538aa0fB065A8EaC878B18D07FbCd',
     },
   },
   docgen: {
@@ -216,11 +222,25 @@ const config: HardhatUserConfig = {
     except: ['/test/*', '/mock/*', '/hardhat-proxy/*'],
   },
   etherscan: {
-    // API key for snowtrace.io
-    apiKey: {
-      metisAndromeda: 'api-key',
-      metisStardust: 'api-key',
-    },
+    apiKey: 'api-key',
+    customChains: [
+      {
+        network: "andromeda",
+        chainId: 1088,
+        urls: {
+          apiURL: "https://andromeda-explorer.metis.io/api",
+          browserURL: "https://andromeda-explorer.metis.io",
+        },
+      },
+      {
+        network: "goerli",
+        chainId: 599,
+        urls: {
+          apiURL: "https://goerli.explorer.metisdevops.link/api",
+          browserURL: "https://goerli.explorer.metisdevops.link",
+        },
+      },
+    ],
   },
 }
 
