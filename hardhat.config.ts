@@ -48,7 +48,7 @@ const config: HardhatUserConfig = {
             runs: 10000,
           },
         },
-      }
+      },
     ],
   },
   typechain: {
@@ -124,7 +124,7 @@ const config: HardhatUserConfig = {
       1088: '0x51864b8948Aa5e35aace2BaDaF901D63418A3b9D',
     },
     DAI_FEED: {
-      1088: '0xe0351cAAE70B5AdBD0107cD5331AD1D79c4c1CA1'
+      1088: '0xe0351cAAE70B5AdBD0107cD5331AD1D79c4c1CA1',
     },
 
     // tokens
@@ -171,6 +171,10 @@ const config: HardhatUserConfig = {
       599: '0xc2b06A1707E7351bA25c2F0bA8287e1A233e4b9A',
       1088: '0x420000000000000000000000000000000000000A',
     },
+    WBTC: {
+      599: '0x8b8f17a4BfeEcB6c2FD11E66FE17e5F1E86078Dd',
+      1088: '0x433E43047B95cB83517abd7c9978Bdf7005E9938',
+    },
 
     // Main Pool LP Assets
     HLPBUSD: {
@@ -214,19 +218,19 @@ const config: HardhatUserConfig = {
     apiKey: 'api-key',
     customChains: [
       {
-        network: "andromeda",
+        network: 'andromeda',
         chainId: 1088,
         urls: {
-          apiURL: "https://andromeda-explorer.metis.io/api",
-          browserURL: "https://andromeda-explorer.metis.io",
+          apiURL: 'https://andromeda-explorer.metis.io/api',
+          browserURL: 'https://andromeda-explorer.metis.io',
         },
       },
       {
-        network: "goerli",
+        network: 'goerli',
         chainId: 599,
         urls: {
-          apiURL: "https://goerli.explorer.metisdevops.link/api",
-          browserURL: "https://goerli.explorer.metisdevops.link",
+          apiURL: 'https://goerli.explorer.metisdevops.link/api',
+          browserURL: 'https://goerli.explorer.metisdevops.link',
         },
       },
     ],
