@@ -79,7 +79,7 @@ const config: HardhatUserConfig = {
 
     // contracts
     FEED: {
-      599: '0xEcE9362Df2501aB3FbfE868C488ce195c1052D9D', // TestChainlinkAggregator
+      599: '0xEcE9362Df2501aB3FbfE868C488ce195c1052D9D', // TestChainlinkAggregator, $1 feed
       1088: '0xa479FC13e40155e853e790115423704BF06a065F', // DIA, https://docs.diadata.org/documentation/oracle-documentation/deployed-contracts
     },
     ORACLE: {
@@ -118,6 +118,7 @@ const config: HardhatUserConfig = {
 
     // chainlink feeds, https://docs.chain.link/docs/data-feeds-metis/
     USDC_FEED: {
+      599: '0xEcE9362Df2501aB3FbfE868C488ce195c1052D9D', // $1
       1088: '0x663855969c85F3BE415807250414Ca9129533a5f',
     },
     USDT_FEED: {
@@ -125,6 +126,36 @@ const config: HardhatUserConfig = {
     },
     DAI_FEED: {
       1088: '0xe0351cAAE70B5AdBD0107cD5331AD1D79c4c1CA1',
+    },
+    BTC_FEED: {
+      599: '0xc5c290d3681a3B67bb47140F97c76BdE72469491', // $30k
+      1088: '0x51Ed8Fecf96813826F727CaBDF01b3cF6a61373e',
+    },
+    ETH_FEED: {
+      599: '0x1BA958B67F33E54a0635C5174E1a67F3A65839D0', // $2k
+      1088: '0x3BBe70e2F96c87aEce7F67A2b0178052f62E37fE',
+    },
+    METIS_FEED: {
+      599: '0xeF5Fd1246fc5f851449df573F833F9Ec658cd3c5', // $20
+      1088: '0xD4a5Bb03B5D66d9bf81507379302Ac2C2DFDFa6D',
+    },
+
+    // rate providers
+    BTC_PROVIDER: {
+      599: '0xE961CEfceE75DBCB3A47B6E51886bc9d1e43c8eD',
+      1088: '',
+    },
+    ETH_PROVIDER: {
+      599: '0xBd27CcBb8e34D25BB2288bA77901a4C33252E37D',
+      1088: '',
+    },
+    METIS_PROVIDER: {
+      599: '0x1Ab4E3633758495E703252f6d97DC5Fe4855beb9',
+      1088: '',
+    },
+    USDC_PROVIDER: {
+      599: '0x28A3229E9fDf32d9DB624536EDa209DBD32977AF',
+      1088: '',
     },
 
     // tokens

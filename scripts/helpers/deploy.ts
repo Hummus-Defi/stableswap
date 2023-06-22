@@ -115,6 +115,15 @@ export const deployTimelock = async (minDelay: number, proposers: string[], exec
   return timelock
 }
 
+export const deployRateProvider = async (feed: string) => {
+  const ChainlinkRateProviderFactory = await ethers.getContractFactory('ChainlinkRateProvider')
+  console.log('Deploying ChainlinkRateProvider...')
+  const rateProvider = await ChainlinkRateProviderFactory.deploy(feed)
+  await rateProvider.deployed()
+  console.log('Deployed to:', rateProvider.address)
+  return rateProvider
+}
+
 // Testnet
 
 export const deployMockERC20 = async (name: string, symbol: string, decimals: number, supply: BigNumberish) => {
