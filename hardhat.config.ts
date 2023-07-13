@@ -113,7 +113,7 @@ const config: HardhatUserConfig = {
       // 599: '0xeedd391103DEaa5370A4995800195f124B4fB49D', // V1
       // 1088: '0xeBe9BC8a373a3e8eCE71FAC4d9733DC9F6701869', // V1
       599: '0x5B70D206bF9d4c1c482179552815345Ea172dA7f',
-      1088: '0x23f0b6274e3126f6b5c70faabbc59b04108b58ba',
+      1088: '0x5b7e71f6364da1716c44a5278098bc46711b9516',
     },
 
     // chainlink feeds, https://docs.chain.link/docs/data-feeds-metis/
@@ -143,19 +143,19 @@ const config: HardhatUserConfig = {
     // rate providers
     BTC_PROVIDER: {
       599: '0xE961CEfceE75DBCB3A47B6E51886bc9d1e43c8eD',
-      1088: '',
+      1088: '0xB2497b06806b8e8A986c7a2aFaaB7053d44685cd',
     },
     ETH_PROVIDER: {
       599: '0xBd27CcBb8e34D25BB2288bA77901a4C33252E37D',
-      1088: '',
+      1088: '0xC207b09ae34fE1c8626620Bd9814c7215Ad1A296',
     },
     METIS_PROVIDER: {
       599: '0x1Ab4E3633758495E703252f6d97DC5Fe4855beb9',
-      1088: '',
+      1088: '0x441Db4FcEf73142221c0A6e80F48F874149FB912',
     },
     USDC_PROVIDER: {
       599: '0x28A3229E9fDf32d9DB624536EDa209DBD32977AF',
-      1088: '',
+      1088: '0xdf01a632b3Fd854Acd6395b4d80960469629150C',
     },
 
     // tokens

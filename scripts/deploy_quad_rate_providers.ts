@@ -1,4 +1,4 @@
-import { deployRateProvider } from '../helpers/deploy'
+import { deployRateProvider } from './helpers/deploy'
 import { getNamedAccounts } from 'hardhat'
 
 async function main() {
