@@ -3,6 +3,7 @@ import { parseEther } from '@ethersproject/units'
 import chai from 'chai'
 import { BigNumber, BigNumberish, Contract, ContractFactory, Signer } from 'ethers'
 import { solidity } from 'ethereum-waffle'
+import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers'
 
 const { expect } = chai
 chai.use(solidity)
@@ -184,4 +185,47 @@ export const setPriceOracle = async (
 
     await Promise.all(updatePromise)
   }
+}
+
+export const initAssetWithValues = async (
+  token: Contract,
+  asset: Contract,
+  owner: SignerWithAddress,
+  pool: Contract,
+  totalSupply: BigNumber,
+  cash: BigNumber,
+  liability: BigNumber
+): Promise<void> => {
+  expect(await asset.underlyingToken()).to.be.equal(token.address)
+
+  const fiveSecondsSince = (await ethers.provider.getBlock('latest')).timestamp + 5 * 1000
+
+  await token.approve(pool.address, totalSupply)
+
+  await pool.connect(owner).deposit(asset.underlyingToken(), totalSupply, owner.address, fiveSecondsSince)
+
+  await asset.connect(owner).setPool(owner.address)
+
+  if (totalSupply.lt(cash)) {
+    await asset.connect(owner).addCash(cash.sub(totalSupply))
+    await token.connect(owner).transfer(asset.address, cash.sub(totalSupply))
+  } else if (totalSupply.gt(cash)) {
+    await asset.connect(owner).removeCash(totalSupply.sub(cash))
+    await asset.connect(owner).transferUnderlyingToken(owner.address, totalSupply.sub(cash))
+  }
+
+  if (totalSupply.lt(liability)) {
+    await asset.connect(owner).addLiability(liability.sub(totalSupply))
+  } else if (totalSupply.gt(liability)) {
+    await asset.connect(owner).removeLiability(totalSupply.sub(liability))
+  }
+
+  await asset.connect(owner).setPool(pool.address)
+
+  // sanity checks
+  expect(await asset.cash()).to.be.equal(cash)
+  expect(await asset.liability()).to.be.equal(liability)
+  expect(await asset.underlyingTokenBalance()).to.be.equal(cash)
+  expect(await asset.pool()).to.be.equal(pool.address)
+  expect(await asset.totalSupply()).to.be.equal(totalSupply)
 }
