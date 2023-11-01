@@ -155,18 +155,28 @@ contract Core {
         }
 
         uint256 cashAfter;
+        // reverse is true when cashAfter is a negative number
+        bool reverse;
         // Cover case where cash <= amount
         if (cash > amount) {
             cashAfter = cash - amount;
         } else {
-            cashAfter = 0;
+            cashAfter = amount - cash;
+            reverse = true;
         }
 
         uint256 covAfter = (cashAfter).wdiv(liability - amount);
         uint256 slippageBefore = _slippageFunc(k, n, c1, xThreshold, covBefore);
-        uint256 slippageAfter = _slippageFunc(k, n, c1, xThreshold, covAfter);
         uint256 slippageNeutral = _slippageFunc(k, n, c1, xThreshold, WAD); // slippage on cov = 1
+        uint256 slippageAfter;
 
+        // in case cashAfter is a negative number
+        if (reverse) {
+            slippageAfter = c1 + covAfter;
+        } else {
+            slippageAfter = _slippageFunc(k, n, c1, xThreshold, covAfter);
+        }
+        
         // calculate fee
         // fee = a - b
         // fee = [(Li - Di) * SlippageAfter] + [g(1) * Di] - [Li * SlippageBefore]
