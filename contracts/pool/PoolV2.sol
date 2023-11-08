@@ -691,7 +691,7 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
         uint256 minimumAmount,
         address to,
         uint256 deadline
-    ) external override ensure(deadline) nonReentrant whenNotPaused returns (uint256 amount) {
+    ) external override ensure(deadline) nonReentrant returns (uint256 amount) {
         require(liquidity > 0, 'ZERO_ASSET_AMOUNT');
         require(token != address(0), 'ZERO');
         require(to != address(0), 'ZERO');
@@ -734,7 +734,7 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
         uint256 minimumAmount,
         address to,
         uint256 deadline
-    ) external override ensure(deadline) nonReentrant whenNotPaused returns (uint256 amount) {
+    ) external override ensure(deadline) nonReentrant returns (uint256 amount) {
         require(liquidity > 0, 'ZERO_ASSET_AMOUNT');
         require(wantedToken != address(0), 'ZERO');
         require(initialToken != address(0), 'ZERO');
@@ -940,7 +940,6 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
         external
         view
         override
-        whenNotPaused
         returns (
             uint256 amount,
             uint256 fee,
@@ -967,7 +966,7 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
         address initialToken,
         address wantedToken,
         uint256 liquidity
-    ) external view whenNotPaused returns (uint256 amount, uint256 fee) {
+    ) external view returns (uint256 amount, uint256 fee) {
         require(initialToken != address(0), 'ZERO');
         require(wantedToken != address(0), 'ZERO');
         require(liquidity > 0, 'LIQ=0');
@@ -994,7 +993,6 @@ contract PoolV2 is Initializable, OwnableUpgradeable, ReentrancyGuardUpgradeable
     function quoteMaxInitialAssetWithdrawable(address initialToken, address wantedToken)
         external
         view
-        whenNotPaused
         returns (uint256 maxInitialAssetAmount)
     {
         _checkPriceDeviation(initialToken, wantedToken);
