@@ -24,6 +24,10 @@ const config: HardhatUserConfig = {
       url: 'https://goerli.gateway.metisdevops.link',
       chainId: 599,
     },
+    sepolia: {
+      url: 'https://sepolia.rpc.metisdevops.link',
+      chainId: 59901,
+    },
     andromeda: {
       url: 'https://andromeda.metis.io/?owner=1088',
       chainId: 1088,
@@ -264,6 +268,14 @@ const config: HardhatUserConfig = {
           browserURL: 'https://goerli.explorer.metisdevops.link',
         },
       },
+      {
+        network: 'sepolia',
+        chainId: 59901,
+        urls: {
+          apiURL: 'https://sepolia.explorer.metisdevops.link/api',
+          browserURL: 'https://sepolia.explorer.metisdevops.link',
+        },
+      },
     ],
   },
 }
@@ -273,6 +285,10 @@ if (process.env.ACCOUNT_PRIVATE_KEYS) {
     ...config.networks,
     goerli: {
       ...config.networks?.goerli,
+      accounts: JSON.parse(process.env.ACCOUNT_PRIVATE_KEYS),
+    },
+    sepolia: {
+      ...config.networks?.sepolia,
       accounts: JSON.parse(process.env.ACCOUNT_PRIVATE_KEYS),
     },
     andromeda: {
