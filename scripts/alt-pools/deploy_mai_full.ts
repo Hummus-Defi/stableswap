@@ -9,15 +9,15 @@ async function main() {
   const usdc = await deployAsset(USDC, 'Hummus USDC Token (MAI)', 'HLP-m.USDC-MAI', account.address)
   const mai = await deployAsset(MAI, 'Hummus Mai Stablecoin', 'HLP-MAI', account.address)
 
-  const pool = await deployPoolSecondary()
+  // const pool = await deployPoolSecondary()
 
-  // set pool on usdc/mai
-  await setPool(usdc.address, pool.address)
-  await setPool(mai.address, pool.address)
+  // // set pool on usdc/mai
+  // await setPool(usdc.address, pool.address)
+  // await setPool(mai.address, pool.address)
 
-  // add usdc/mai to pool
-  await addAsset(pool.address, usdc.address, USDC)
-  await addAsset(pool.address, mai.address, MAI)
+  // // add usdc/mai to pool
+  // await addAsset(pool.address, usdc.address, USDC)
+  // await addAsset(pool.address, mai.address, MAI)
 }
 
 main()
