@@ -157,6 +157,15 @@ const config: HardhatUserConfig = {
       59901: '0xD630FAC060598Cc180d59AA35e87cFebdC473C2d', // $100
       1088: '0xD4a5Bb03B5D66d9bf81507379302Ac2C2DFDFa6D',
     },
+    FRXETH_FEEDLOW: {
+      1088: '0x2aB80F9a26bc87c1359D86DDF89ce331648aE91E',
+    },
+    FRXETH_FEEDHIGH: {
+      1088: '0xa7CBaB1722a6631665863d624A81ab4C4eD0e876',
+    },
+    SFRXETH_FEED: {
+      1088: '0x732bEa04DF4184Fb50B5648bf1A74553f01Fd850',
+    },
 
     // rate providers
     BTC_PROVIDER: {

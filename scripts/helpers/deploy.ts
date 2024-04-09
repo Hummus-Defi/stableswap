@@ -124,6 +124,15 @@ export const deployRateProvider = async (feed: string) => {
   return rateProvider
 }
 
+export const deployFraxRateProvider = async (feed: string, feedhigh: string, feedusd: string) => {
+  const ChainlinkFraxRateProviderFactory = await ethers.getContractFactory('ChainlinkFraxRateProvider')
+  console.log('Deploying ChainlinkFraxRateProvider...')
+  const rateProvider = await ChainlinkFraxRateProviderFactory.deploy(feed, feedhigh, feedusd)
+  await rateProvider.deployed()
+  console.log('Deployed to:', rateProvider.address)
+  return rateProvider
+}
+
 // Testnet
 
 export const deployMockERC20 = async (name: string, symbol: string, decimals: number, supply: BigNumberish) => {
